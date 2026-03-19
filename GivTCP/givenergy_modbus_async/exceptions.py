@@ -3,9 +3,10 @@ class ExceptionBase(Exception):
 
     message: str
 
-    def __init__(self, message: str) -> None:
-        super().__init__(message)
-        self.message = message
+    def __init__(self, message: str = "") -> None:
+        resolved_message = message or self.__class__.__name__
+        super().__init__(resolved_message)
+        self.message = resolved_message
 
 
 class InvalidPduState(ExceptionBase):

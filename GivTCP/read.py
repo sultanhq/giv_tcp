@@ -23,6 +23,7 @@ from datetime import timedelta
 import asyncio
 from typing import Callable, Optional
 from mqtt import GivMQTT
+from retry_utils import initial_connection_retry_delay
 
 logging.getLogger("givenergy_modbus_async").setLevel(logging.ERROR) 
 logging.getLogger("rq.worker").setLevel(logging.CRITICAL)
@@ -106,6 +107,9 @@ async def watch_plant(
                 await client.close()
             except:
                 pass
+            retry_delay = initial_connection_retry_delay(refresh_period)
+            logger.info("Retrying initial inverter detect in %.0fs", retry_delay)
+            await asyncio.sleep(retry_delay)
             return
         except Exception as e:
             err=sys.exc_info()[0].__name__, os.path.basename(sys.exc_info()[2].tb_frame.f_code.co_filename), sys.exc_info()[2].tb_lineno
@@ -119,6 +123,9 @@ async def watch_plant(
                 await client.close()
             except:
                 pass
+            retry_delay = initial_connection_retry_delay(refresh_period)
+            logger.info("Retrying initial inverter detect in %.0fs", retry_delay)
+            await asyncio.sleep(retry_delay)
             return
         # set last full_refresh time
         lastfulltime=datetime.datetime.now()
