@@ -19,7 +19,7 @@ Typically run through the Home Assistant Addon, it is also possible to run as a 
 
 ### Install GivTCP
 #### Addon
- - Add https://github.com/britkat1980/ha-addons to the Addon Store repositories in HA
+ - Add https://github.com/sultanhq/giv_tcp to the Addon Store repositories in HA
  - Refresh addon store and click on GivTCP and click install
 
 #### Docker
@@ -61,7 +61,7 @@ See [Settings Guide](SETTINGS-GUIDE.md) for more detail on controls available an
 Users with parallel AIO installations should have 3 (with dual AIO) inverters pre-populated in the "Inverters" page. If any are missing they should be added here. Static / fixed IP addresses should be set for all inverters. The Gateway inverter should be the only inverter that is controlled via GivTCP, the individual AIO inverter data treated for information only.
 
 ## Home Assistant Add-on
-To install GivTCP as an add-on, add this repository (https://github.com/britkat1980/ha-addons) to the Add-on Store repository list.
+To install this forked add-on, add this repository (https://github.com/sultanhq/giv_tcp) to the Add-on Store repository list.
 
 The addon assumes HA is running Mosquito as an addon, which also available to install from the Add-on store. GivTCP will automatically connect to it if installed. If not, then you will need to install your own MQTT broker and provide the connection details in the config page
 
